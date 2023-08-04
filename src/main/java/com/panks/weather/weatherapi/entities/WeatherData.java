@@ -12,12 +12,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-//@Entity
 @Component
 @Embeddable
 public class WeatherData {
-
-   // @Id
     private long id;
 
     @Embedded

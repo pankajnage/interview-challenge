@@ -11,16 +11,16 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="cached-weather-data")
+@Table(name = "cached-weather-data")
 @Builder
 @Component
 public class WeatherCachedData {
 
     @Id
-    @Column(name="city-country")
+    @Column(name = "city-country")
     private String cityCountry;
 
-    @Column(name="weather-data")
+    @Column(name = "weather-data")
     @Embedded
     private WeatherData weatherData;
 

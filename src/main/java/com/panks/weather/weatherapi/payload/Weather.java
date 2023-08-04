@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class Weather {
 
     @Id
-    @Column(insertable=false, updatable=false)
+    @Column(insertable = false, updatable = false)
     private int id;
     private String main;
     private String description;

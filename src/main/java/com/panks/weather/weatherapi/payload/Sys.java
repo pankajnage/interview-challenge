@@ -8,7 +8,7 @@ import lombok.Data;
 @Embeddable
 public class Sys {
     private int type;
-    @Column(insertable=false, updatable=false)
+    @Column(insertable = false, updatable = false)
     private int id;
     private String country;
     private long sunrise;

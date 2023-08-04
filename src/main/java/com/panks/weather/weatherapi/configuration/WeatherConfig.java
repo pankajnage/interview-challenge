@@ -14,7 +14,7 @@ public class WeatherConfig {
     }
 
     @Bean
-    public RestTemplateBuilder restTemplateBuilder(){
+    public RestTemplateBuilder restTemplateBuilder() {
         return new RestTemplateBuilder();
     }
 

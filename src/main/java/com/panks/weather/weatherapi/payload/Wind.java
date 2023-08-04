@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @Embeddable
 public class Wind {
-    private  double speed;
+    private double speed;
     private int deg;
 }
