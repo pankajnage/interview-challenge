@@ -1,6 +1,7 @@
 package com.panks.weather.weatherapi.controllers;
 
 import com.panks.weather.weatherapi.entities.WeatherData;
+import com.panks.weather.weatherapi.exceptions.WeatherNotFoundExpection;
 import com.panks.weather.weatherapi.payload.Weather;
 import com.panks.weather.weatherapi.payload.WeatherApiResponse;
 import com.panks.weather.weatherapi.services.WeatherService;
@@ -40,7 +41,7 @@ public class WeatherController {
             String description= weatherService.getWeatherData(city,country,apiKey);
             return ResponseEntity.ok(description);
         }
-        catch(Exception ex){
+        catch(WeatherNotFoundExpection ex){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Weather Data Not Found");
         }
 

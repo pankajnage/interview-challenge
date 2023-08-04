@@ -12,11 +12,12 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+//@Entity
 @Component
+@Embeddable
 public class WeatherData {
 
-    @Id
+   // @Id
     private long id;
 
     @Embedded
@@ -24,7 +25,6 @@ public class WeatherData {
 
 
     @Embedded
-    //@Transient
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "main_entity_id")
     private List<Weather> weather;
@@ -33,21 +33,17 @@ public class WeatherData {
     private String base;
 
     @Embedded
-    //@Transient
     private Main main;
 
     private int visibility;
 
     @Embedded
-    //@Transient
     private Wind wind;
 
     @Embedded
-    //@Transient
     private Clouds clouds;
     private long dt;
     @Embedded
-    //@Transient
     private Sys sys;
     private int timezone;
     private String name;

@@ -41,7 +41,7 @@ public Boolean rateLimitExceededValidator(String apiKey){
         }
 
         // time difference is less than an hour and request count is less than 5
-        if((Time_Differnce_InMin < TOTAL_TIME_IN_MIN) && (apiKeyDetails.get().getRequestCount() < 5)){
+        if((Time_Differnce_InMin < TOTAL_TIME_IN_MIN) && (apiKeyDetails.get().getRequestCount() < RATE_LIMIT)){
             int counter= apiKeyDetails.get().getRequestCount();
             ApiKeyRate apiKeyRate = ApiKeyRate.builder().apiKey(apiKey).requestCount(++counter).lastRequestTime(LocalDateTime.now()).build();
             apiKeyRateRepository.save(apiKeyRate);
