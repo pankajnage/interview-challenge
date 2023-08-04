@@ -24,12 +24,12 @@ public class WeatherController {
 
         //Validate API Key
         if (!isValidApiKey(apiKey)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid API Key");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid API Key.");
         }
 
         // Check if rate limit is exceed
         if (rateLimiterUtility.rateLimitExceededValidator(apiKey)) {
-            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Hourly limit exceeded for API Key");
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Hourly limit exceeded for API Key.");
         }
 
         // Fetching weather details from cached data or OpenWeather API

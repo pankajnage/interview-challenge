@@ -1,0 +1,45 @@
+swagger: '2.0'
+info:
+  title: Weather API
+  description: Provides real-time weather data for a specified city and country using the OpenWeatherMap service.
+  version: 1.0.0
+host: localhost:8090
+basePath: /weather-api
+schemes:
+  - http
+paths:
+  /weather:
+    get:
+      summary: Get weather data for a city and country
+      parameters:
+        - name: city
+          in: query
+          description: The name of the city for which weather data is required.
+          required: true
+          type: string
+        - name: country
+          in: query
+          description: The ISO 3166-1 alpha-2 code of the country for the city.
+          required: true
+          type: string
+        - name: apiKey
+          in: query
+          description: The API key for accessing the Weather API (e.g., c9737ae97e4ce576407a520f30a486b1).
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success. Weather data is retrieved.
+          schema:
+            type: string
+            example: "Partly cloudy"
+        '400':
+          description: Bad request. Invalid or missing parameters.
+        '401':
+          description: Unauthorized. Invalid API key.
+        '404':
+          description: Not Found. Weather data not found for the provided city and country.
+        '406':
+          description: Not Acceptable. Hourly limit exceeded for API Key.
+        '503':
+          description: Service Unavailable. Weather service is currently unavailable.
