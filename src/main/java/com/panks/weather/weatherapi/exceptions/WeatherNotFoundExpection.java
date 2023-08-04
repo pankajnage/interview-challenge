@@ -3,7 +3,7 @@ package com.panks.weather.weatherapi.exceptions;
 public class WeatherNotFoundExpection extends RuntimeException{
 
     public WeatherNotFoundExpection(){
-        super("Weather Data Not Found");
+        super("Weather data not found for provided city and country code combination");
     }
 
     public WeatherNotFoundExpection(String msg){

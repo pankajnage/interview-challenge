@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Answers;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.client.ResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
@@ -33,7 +35,7 @@ public class WeatherServiceImplTest {
     @Autowired
     private WeatherServiceImpl weatherServiceImpl;
 
-   @MockBean
+   @Autowired
    private RestTemplateBuilder restTemplateBuilder;
 
    @MockBean
@@ -45,26 +47,19 @@ public class WeatherServiceImplTest {
     @Autowired
     WeatherCachedData weatherCachedData;
 
-    @MockBean
-    RestTemplateErrorHandler restTemplateErrorHandler;
-
-    @MockBean
-    ResponseErrorHandler responseErrorHandler;
-
 
 
     @BeforeEach
     public void setUp(){
-        MockitoAnnotations.openMocks(this);
-        when(restTemplateBuilder.errorHandler(any()).build()).thenReturn(restTemplate);
+        ReflectionTestUtils.setField(weatherServiceImpl,"restTemplate",restTemplate);
     }
-    //@Test
+    @Test
   public void testGetWeatherDataFromCache(){
       String city="Melbourne";
       String country="au";
       String apiKey="Key-1";
 
-      String cityCountry=city+""+country;
+      String cityCountry=city+country;
 
       WeatherData weatherData = new WeatherData();
       Weather weather = new Weather();
@@ -81,13 +76,13 @@ public class WeatherServiceImplTest {
 
   }
 
- // @Test
+  @Test
     public void testGetWeatherDataFromOpenWeatherApi(){
         String city="Melbourne";
         String country="au";
         String apiKey="Key-1";
 
-        String cityCountry=city+""+country;
+        String cityCountry=city+country;
 
         WeatherData weatherData = new WeatherData();
         Weather weather = new Weather();

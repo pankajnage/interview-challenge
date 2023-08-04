@@ -25,15 +25,13 @@ public class WeatherServiceImpl implements WeatherService {
 
 
     @Autowired
-    public WeatherServiceImpl(RestTemplateBuilder restTemplateBuilder, WeatherCachedDataRepository weatherCachedDataRepository){
-
+    public WeatherServiceImpl(RestTemplateBuilder restTemplateBuilder){
         restTemplate= restTemplateBuilder
                                    .errorHandler(new RestTemplateErrorHandler())
                                     .build();
-        this.weatherCachedDataRepository = weatherCachedDataRepository;
-
     }
 
+    @Autowired
     WeatherCachedDataRepository weatherCachedDataRepository;
 
     @Autowired
@@ -46,7 +44,7 @@ public class WeatherServiceImpl implements WeatherService {
     @Override
     public String getWeatherData(String city, String country, String apiKey) {
 
-        String cityCountry= city+""+country;
+        String cityCountry= city+country;
         Optional<WeatherCachedData> optionalWeatherCachedData= weatherCachedDataRepository.findById(cityCountry);
 
         if(optionalWeatherCachedData.isPresent()){
